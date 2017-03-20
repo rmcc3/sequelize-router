@@ -1,8 +1,19 @@
 var Router = require('express').Router;
 
+/**
+ * @type {[*]}
+ */
 var keyed = ['findById', 'update', 'remove'];
+
+/**
+ * @type {{find: string, findOne: string, findById: string, create: string, update: string, remove: string}}
+ */
 var map = { find:'get', findOne:'get', findById:'get', create:'post', update:'put', remove:'delete' };
-  
+
+/**
+ * @param route
+ * @returns {*}
+ */
 module.exports = function resourceRouter(route) {
   var router = new Router();
   var name = '/' + route.id.toLowerCase();
@@ -15,5 +26,5 @@ module.exports = function resourceRouter(route) {
       router[fn](url, route[key]);
     }
   }
-  return router;
+	return router;
 };
